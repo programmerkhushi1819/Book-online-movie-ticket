@@ -1,8 +1,8 @@
 <?php
 	session_start();
   if(isset($_POST['login'])){
-    include('connection.php');
-    $query = "select * from users where email = '$_POST[email]' AND password = '$_POST[password]'";
+    include('../connection.php');
+    $query = "select * from admins where email = '$_POST[email]' AND password = '$_POST[password]'";
   	$query_run = mysqli_query($connection,$query);
     if(mysqli_num_rows($query_run)){
 			$_SESSION['email'] = $_POST['email'];
@@ -11,7 +11,7 @@
         $_SESSION['user_id'] = $row['id'];
 			}
       echo "<script type='text/javascript'>
-      	window.location.href = 'user_dashboard.php';
+      	window.location.href = 'admin_dashboard.php';
       </script>";
     }
     else{
@@ -24,12 +24,12 @@
 ?>
 <html>
     <head>
-        <title>Login Page</title>
+        <title>Admin Login Page</title>
         <!-- Bootsrap Files -->
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
-		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 		<!-- CSS Files -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="../css/style.css">
     </head>
     <body style="background-color:#FCD2D1;">
     <!-- Header code starts here -->
@@ -39,10 +39,11 @@
       </div>
       <div class="col-md-7" style="text-align: right;">
         <ul>
-          <li><a href="index.php" class="active">Home</a></li>
-          <li><a href="movies.php">Movies</a></li>
-          <li><a href="register.php">Register</a></li>
-          <li><a href="login.php">Login</a></li>
+          <li><a href="../index.php" class="active">Home</a></li>
+          <li><a href="../movies.php">Movies</a></li>
+          <li><a href="../register.php">Register</a></li>
+          <li><a href="../login.php">Login</a></li>
+          <li><a href="login.php">Admin Login</a></li>
         </ul>
       </div>
     </div>
@@ -50,7 +51,7 @@
 
         <div class="row">
             <div class="col-md-4" id="login_form">
-            <center><h3><u>User Login form</u></h3></center>
+            <center><h3><u>Admin Login form</u></h3></center>
             <form action="" method="post">
                 <div class="form-group">
                 <label for="email">Email:</label>
